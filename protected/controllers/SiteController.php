@@ -79,23 +79,6 @@ class SiteController extends Controller
 			'model'=>$model
 		));
 	}
-
-	public function actionExchange()
-	{
-            $model=new AccountData;
-            if(isset($_POST['AccountData'])){
-            $credits = $_POST['AccountData']['count'];
-            $result=AccountData::model()->exchange(Yii::app()->user->name, $credits);
-                if ($result=='OK'){
-                Yii::app()->user->setFlash('success', 'Начислено '.$credits.' кредитов');
-                $this->redirect(array('/site/exchange'));
-                } else {
-                    Yii::app()->user->setFlash('exchange', $result);
-                }
-            }
-            $this->render('exchange', array('model'=>$model));
-            
-	}
         
 	/**
 	 * This is the action to handle external exceptions.
@@ -186,13 +169,13 @@ class SiteController extends Controller
         
         public function actionPass()
 	{
-            $model = AccountData::model()->find('name=:name', array(':name'=>Yii::app()->user->name));
+            $model = Accounts::model()->find('login=:login', array(':login'=>Yii::app()->user->name));
                 if (!isset($model))
                     throw new CHttpException(404);
                 $model->scenario = 'update';
                 $model->unsetAttributes(array('password'));
-            if(isset($_POST['AccountData'])){
-            $model->attributes=$_POST['AccountData'];
+            if(isset($_POST['Accounts'])){
+            $model->attributes=$_POST['Accounts'];
                 if($model->save()){
                 Yii::app()->user->setFlash('success', 'Пароль изменен');
                 $this->redirect(array('/site/pass'));

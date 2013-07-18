@@ -59,7 +59,7 @@ return array(
 		),
 
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=aion',
+			'connectionString' => 'mysql:host=localhost;dbname=la2',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'vertrigo',
@@ -96,8 +96,8 @@ return array(
 	'params'=>array(
 		'credits'=>'100',
                 'adminEmail'=>'mm555-99@mail.ru',
-                'adminName'=>'admin',
-                'adminDomen'=>'aion7.ru',
+                'adminName'=>'mazdik',
+                'adminDomen'=>'lineage7.ru',
                 'waytopayLogin' =>'3236',
                 'waytopayPass' =>'3424e8-810cd2-ae915f-d1eefe-63c3',
                 'exchangeCredits' => '0.1',

@@ -110,20 +110,18 @@ class PayShop extends CActiveRecord
             return $model->price;
         }
 
-        public function updateBalance($id, $char_id, $count)
+        public function updateBalance($id, $login, $count)
         {
             $price=  self::model()->getItemPrice($id);
-            $login = Players::model()->getAccount($char_id);
             $balance = PayBalance::model()->find('login=:login', array(':login'=>$login));
             $price=$price*$count;
             $balance->balance=$balance->balance-$price;
             $balance->saveAttributes(array('balance'));
         }
         
-        public function checkBalance($id, $char_id, $count)
+        public function checkBalance($id, $login, $count)
         {
-            $price=  self::model()->getItemPrice($id);
-            $login = Players::model()->getAccount($char_id);  
+            $price=  self::model()->getItemPrice($id);  
             $balance = PayBalance::model()->find('login=:login', array(':login'=>$login));
             if($balance->balance<$price*$count){
                 return false;
@@ -136,17 +134,17 @@ class PayShop extends CActiveRecord
         public function buyItem($id, $char_id, $count)
         {
             $shop = self::model()->findByPk($id);
-            $player = Players::model()->findByPk($char_id);
+            $player = Characters::model()->find('obj_Id=:obj_Id', array(':obj_Id'=>$char_id));
             $balance = PayBalance::model()->find('login=:login', array(':login'=>$player->account_name));
             $price=$shop->price*$count;
             if($balance->balance<$price){
                 return false;
             } else
             {
-                Inventory::model()->addItem($char_id, $id, $count);
+                Items::model()->addItem($char_id, $id, $count);
                 $balance->balance=$balance->balance-$price;
                 $balance->saveAttributes(array('balance'));
-                Transactions::model()->addTransaction($player->account_name, $player->name, $shop->id, $shop->item_name, $count, $shop->price);
+                Transactions::model()->addTransaction($player->account_name, $player->char_name, $shop->id, $shop->item_name, $count, $shop->price);
                 return true;
             }
         }

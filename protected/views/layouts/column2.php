@@ -18,12 +18,12 @@
                 array('label' => 'Обменник', 'icon' => 'icon-repeat', 'url' => array('site/exchange')),
                 array('label' => 'Персонажи'),
             );
-            $players= Players::model()->findAll('account_id=:account_id', array(':account_id'=>Yii::app()->user->id));
+            $players= Characters::model()->findAll('account_name=:account_name', array(':account_name'=>Yii::app()->user->name));
             foreach ($players as $player) {
                 if ($player->online>0) {
-                $menu[] = array('label' => $player->name.' (Online)', 'icon' => 'icon-edit', 'url' => '');   
+                $menu[] = array('label' => $player->char_name.' (Online)', 'icon' => 'icon-edit', 'url' => '');   
                 } else {
-                $menu[] = array('label' => $player->name, 'icon' => 'icon-shopping-cart', 'url' => array('/payShop?id='.$player->id.'&name='.$player->name));
+                $menu[] = array('label' => $player->char_name, 'icon' => 'icon-shopping-cart', 'url' => array('/payShop?id='.$player->obj_Id.'&name='.$player->char_name));
                     } 
                 }
             $this->widget('bootstrap.widgets.TbMenu', array(

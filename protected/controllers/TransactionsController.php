@@ -119,10 +119,6 @@ class TransactionsController extends Controller
 	 */
 	public function actionIndex()
 	{
-//		$dataProvider=new CActiveDataProvider('Transactions');
-//		$this->render('index',array(
-//			'dataProvider'=>$dataProvider,
-//		));
 		$model=new Transactions('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Transactions']))

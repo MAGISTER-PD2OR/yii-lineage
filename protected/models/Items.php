@@ -138,29 +138,19 @@ class Items extends CActiveRecord
 	}
         
         public function addItem($char_id, $item_id, $count) {
-        
-	$res="SELECT * FROM inventory WHERE itemOwner='$char_id' AND itemId='$item_id' LIMIT 1";  
-        $max="SELECT max(itemUniqueId)+1 as maxid FROM inventory";
-        $connection=Yii::app()->db;
-        $row = $connection->createCommand($res)->queryRow();
-        $row2 = $connection->createCommand($max)->queryRow();
-        $itemUniqueId = $row2['maxid'];
-        $update_query="UPDATE inventory SET itemCount=itemCount+$count WHERE itemOwner='$char_id' AND itemId='$item_id' LIMIT 1";
-	$insert_query="INSERT INTO inventory (itemUniqueId,itemCount,itemOwner,itemId) VALUES($itemUniqueId,$count,$char_id,'$item_id')";
-        
-        if ($count > 1) {     
-        // есть чО?      
-        if ($row) { 
-        // чОтО есть  
-          $connection->createCommand($update_query)->execute();
-        }  else {   
-        // нет никуя
-          $connection->createCommand($insert_query)->execute();
-        }
-        // даём без проверок						
-        } else {
-          $connection->createCommand($insert_query)->execute(); 
-        }
+           
+        $result = Items::model()->findByAttributes(array('item_id' => $item_id, 'owner_id' => $char_id));
+           if ($result !== NULL && $count>1) {
+                $result->count = $result->count+$count; 
+            if ($model->save(false)) {
+             }
+           } else {
+               $model = new Items;
+               $object_id = Items::model()->findBySql('SELECT MAX(object_id) FROM items');
+               $model->object_id = $object_id;
+               if ($model->save(false)) {
+                }
+           }
         
         }
         

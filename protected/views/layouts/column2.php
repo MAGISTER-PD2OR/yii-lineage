@@ -15,7 +15,7 @@
                 array('label' => 'Баланс: ' . Transactions::model()->getBalanse(Yii::app()->user->name), 'url' => ''),
                 array('label' => 'Пополнить баланс ', 'icon' => 'icon-plus-sign', 'url' => array('/pay')),
                 array('label' => 'История', 'icon' => 'icon-list', 'url' => array('site/history')),
-                array('label' => 'Обменник', 'icon' => 'icon-repeat', 'url' => array('site/exchange')),
+                array('label' => 'Обменник', 'icon' => 'icon-repeat', 'url' => array('/payShop/exchange')),
                 array('label' => 'Персонажи'),
             );
             $players= Characters::model()->findAll('account_name=:account_name', array(':account_name'=>Yii::app()->user->name));

@@ -31,7 +31,7 @@ class PayShopController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','create','update','list'),
+				'actions'=>array('admin','delete','create','update','list','exchange'),
 				'users'=>array(Yii::app()->params['adminName']),
 			),
 			array('deny',  // deny all users
@@ -213,4 +213,23 @@ class PayShopController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+	public function actionExchange()
+	{
+//            $model=new AccountData;
+//            if(isset($_POST['AccountData'])){
+//            $credits = $_POST['AccountData']['count'];
+//            $result=AccountData::model()->exchange(Yii::app()->user->name, $credits);
+//                if ($result=='OK'){
+//                Yii::app()->user->setFlash('success', 'Начислено '.$credits.' кредитов');
+//                $this->redirect(array('/site/exchange'));
+//                } else {
+//                    Yii::app()->user->setFlash('exchange', $result);
+//                }
+//            }
+            //$this->render('exchange', array('model'=>$model));
+            $this->render('exchange');
+            
+	}
+        
 }

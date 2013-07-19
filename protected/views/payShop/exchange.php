@@ -9,7 +9,7 @@ $this->breadcrumbs = array(
 <div class="alert in alert-block fade alert-info">
      <b>Кредитов: 
 <?php
-echo AccountData::model()->getBonus(Yii::app()->user->name);
+//echo AccountData::model()->getBonus(Yii::app()->user->name);
 ?> 
 </b></div>
 
@@ -30,23 +30,22 @@ echo AccountData::model()->getBonus(Yii::app()->user->name);
 
 echo 'Обмен игровой валюты по курсу 1 кредит = '.Yii::app()->params['exchangeCredits'].' руб.';
 
-$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-    'id' => 'bonus-form',
-    'enableAjaxValidation' => false,
-        ));
-?>
-<?php
-echo $form->hiddenField($model, 'name');
-echo $form->textFieldRow($model,'count', array('class'=>'span2'));
-?>
+//$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+//    'id' => 'bonus-form',
+//    'enableAjaxValidation' => false,
+//        ));
+//
+//
+//echo $form->hiddenField($model, 'name');
+//echo $form->textFieldRow($model,'count', array('class'=>'span2'));
+//
+//
+//$this->widget('bootstrap.widgets.TbButton', array(
+//    'buttonType' => 'submit',
+//    'type' => 'success',
+//    'label' => $button_label,
+//));
+//
+//$this->endWidget(); 
 
-<?php
-
-$this->widget('bootstrap.widgets.TbButton', array(
-    'buttonType' => 'submit',
-    'type' => 'success',
-    'label' => $button_label,
-));
 ?>
-
-<?php $this->endWidget(); ?>

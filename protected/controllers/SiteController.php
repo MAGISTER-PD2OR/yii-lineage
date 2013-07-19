@@ -22,11 +22,11 @@ class SiteController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','login','logout','error','contact','captcha', 'bonus'),
+				'actions'=>array('index','login','logout','error','contact','captcha'),
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('history','getbonus','pass','exchange'),
+				'actions'=>array('history','pass'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -185,6 +185,6 @@ class SiteController extends Controller
             }
             $this->render('changepassword', array('model'=>$model));
             
-	}
+	} 
         
 }

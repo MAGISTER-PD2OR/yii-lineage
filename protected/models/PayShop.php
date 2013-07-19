@@ -148,4 +148,11 @@ class PayShop extends CActiveRecord
                 return true;
             }
         }
+        
+        public function GridViewCount($type) {
+            if ($type=='count') {
+                return CHtml::textField("count", "", array("class"=>"span1", "maxlength"=>4));
+            }
+            return 1;
+        }
 }

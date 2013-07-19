@@ -216,17 +216,19 @@ class PayShopController extends Controller
         
 	public function actionExchange()
 	{
-//            $model=new AccountData;
-//            if(isset($_POST['AccountData'])){
-//            $credits = $_POST['AccountData']['count'];
-//            $result=AccountData::model()->exchange(Yii::app()->user->name, $credits);
-//                if ($result=='OK'){
-//                Yii::app()->user->setFlash('success', 'Начислено '.$credits.' кредитов');
-//                $this->redirect(array('/site/exchange'));
-//                } else {
-//                    Yii::app()->user->setFlash('exchange', $result);
-//                }
-//            }
+            // todo
+            if(isset($_POST['AccountData'])){
+            $char_id = $_POST['AccountData']['char_id'];
+            $item_id = $_POST['AccountData']['item_id'];
+            $count = $_POST['AccountData']['count'];
+            $result = Items::model()->exchange($char_id, $item_id, $count);
+                if ($result=='OK'){
+                Yii::app()->user->setFlash('success', 'Обмен прошел успешно');
+                $this->redirect(array('/site/exchange'));
+                } else {
+                    Yii::app()->user->setFlash('exchange', $result);
+                }
+            }
             //$this->render('exchange', array('model'=>$model));
             $this->render('exchange');
             

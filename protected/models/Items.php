@@ -158,4 +158,8 @@ class Items extends CActiveRecord
         
         }
         
+        public function exchange($char_id, $item_id, $count) {
+            
+        }
+        
 }

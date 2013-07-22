@@ -166,7 +166,9 @@ class Transactions extends CActiveRecord
                     ->from('pay_transactions')
                     ->where('id=:id', array(':id' => $invId))
                     ->queryRow();
+            if (!empty($login)) {
             self::model()->setBalance($login['login'], $outSum);
+            }
         }
         
         public function addTransaction($login, $char_name, $item_type, $item_name, $count, $price_one)

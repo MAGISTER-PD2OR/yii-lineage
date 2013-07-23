@@ -14,6 +14,7 @@
  */
 class PayShop extends CActiveRecord
 {
+        const ITEM_TYPE = 'stackable';
         public $count=1;
         /**
 	 * Returns the static model of the specified AR class.
@@ -137,7 +138,7 @@ class PayShop extends CActiveRecord
         public function buyItem($id, $char_id, $count)
         {
             $shop = self::model()->findByPk($id);
-            $stackable= ($shop->type=='stackable') ? true : false;
+            $stackable= ($shop->type==self::ITEM_TYPE) ? true : false;
 
             $player = Characters::model()->find('obj_Id=:obj_Id', array(':obj_Id'=>$char_id));
             $balance = PayBalance::model()->find('login=:login', array(':login'=>$player->account_name));
@@ -156,18 +157,22 @@ class PayShop extends CActiveRecord
         
         public function getLink($data, $char_id)
         {
-            if ($data->type=='stackable') {
+            if ($data->type==self::ITEM_TYPE) {
             return CHtml::beginForm() . 
-                   CHtml::textField("count", $data->count, array("class"=>"span1", "maxlength"=>4)) . 
-                   CHtml::linkButton(' Купить',array(
+                   CHtml::textField("count", $data->count, array("style"=>"width:36px;", "maxlength"=>4)) . '<br>' .
+                   CHtml::linkButton('Купить',array(
                           'submit'=>Yii::app()->controller->createUrl("add",array("id"=>$data->primaryKey,"char"=>$char_id)),
-                          'confirm'=>"Вы уверены, что хотите купить данный итем?")).
+                          'confirm'=>"Вы уверены, что хотите купить данный итем?",
+                          'class'=>"btn btn-info btn-small"
+                       )).
                    CHtml::endForm();
             } else {
             return CHtml::beginForm() .  
-                   CHtml::linkButton(' Купить',array(
+                   CHtml::linkButton('Купить',array(
                           'submit'=>Yii::app()->controller->createUrl("add",array("id"=>$data->primaryKey,"char"=>$char_id)),
-                          'confirm'=>"Вы уверены, что хотите купить данный итем?")).
+                          'confirm'=>"Вы уверены, что хотите купить данный итем?",
+                          'class'=>"btn btn-success btn-small"
+                       )).
                    CHtml::endForm();   
             }
 

@@ -9,7 +9,8 @@
 
 	<?php echo $form->textFieldRow($model,'id',array('class'=>'span5','maxlength'=>11)); ?>
 
-	<?php echo $form->textFieldRow($model,'type',array('class'=>'span5','maxlength'=>20)); ?>
+	<?php //echo $form->textFieldRow($model,'type',array('class'=>'span5','maxlength'=>20)); ?>
+        <?php echo $form->dropDownListRow($model,'type', array('item'=>'item', 'stackable'=>'stackable') , array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'pic',array('class'=>'span5','maxlength'=>250)); ?>
 

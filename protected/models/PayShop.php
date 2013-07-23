@@ -157,14 +157,20 @@ class PayShop extends CActiveRecord
         public function getLink($data, $char_id)
         {
             if ($data->type=='stackable') {
-                
-            }
             return CHtml::beginForm() . 
                    CHtml::textField("count", $data->count, array("class"=>"span1", "maxlength"=>4)) . 
                    CHtml::linkButton(' Купить',array(
                           'submit'=>Yii::app()->controller->createUrl("add",array("id"=>$data->primaryKey,"char"=>$char_id)),
                           'confirm'=>"Вы уверены, что хотите купить данный итем?")).
                    CHtml::endForm();
+            } else {
+            return CHtml::beginForm() .  
+                   CHtml::linkButton(' Купить',array(
+                          'submit'=>Yii::app()->controller->createUrl("add",array("id"=>$data->primaryKey,"char"=>$char_id)),
+                          'confirm'=>"Вы уверены, что хотите купить данный итем?")).
+                   CHtml::endForm();   
+            }
+
         }
 
 }

@@ -140,11 +140,11 @@ class Items extends CActiveRecord
         public function addItem($char_id, $item_id, $count, $stackable) {
           
         if ($stackable===true) {
-        $result = Items::model()->findByAttributes(array('item_id' => $item_id, 'owner_id' => $char_id));
-           if ($result !== NULL) {
-                $result->count = $result->count+$count; 
-                $result->save(false);
-           } else {
+//        $result = Items::model()->findByAttributes(array('item_id' => $item_id, 'owner_id' => $char_id));
+//           if ($result !== NULL) {
+//                $result->count = $result->count+$count; 
+//                $result->save(false);
+//           } else {
                $model = new Items;
                $object_id = Yii::app()->db->createCommand("SELECT MAX(object_id) FROM items")->queryScalar();
                $model->object_id = $object_id+1;
@@ -155,7 +155,7 @@ class Items extends CActiveRecord
                $model->loc = 'INVENTORY';
                $model->loc_data = 0;
                $model->save(false);
-           }
+//           }
         } else
         {
                $model = new Items;

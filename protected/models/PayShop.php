@@ -14,7 +14,8 @@
  */
 class PayShop extends CActiveRecord
 {
-	/**
+        public $count=1;
+        /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return PayShop the static model class
@@ -50,6 +51,7 @@ class PayShop extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, type, pic, item_name, description, price, status', 'safe', 'on'=>'search'),
+                        array('count', 'numerical', 'integerOnly'=>true),
 		);
 	}
 
@@ -77,6 +79,7 @@ class PayShop extends CActiveRecord
 			'description' => 'Описание',
 			'price' => 'Цена',
 			'status' => 'Статус',
+                        'count' => 'Количество',
 		);
 	}
 
@@ -134,6 +137,8 @@ class PayShop extends CActiveRecord
         public function buyItem($id, $char_id, $count)
         {
             $shop = self::model()->findByPk($id);
+            $stackable= ($shop->type=='stackable') ? true : false;
+
             $player = Characters::model()->find('obj_Id=:obj_Id', array(':obj_Id'=>$char_id));
             $balance = PayBalance::model()->find('login=:login', array(':login'=>$player->account_name));
             $price=$shop->price*$count;
@@ -141,7 +146,7 @@ class PayShop extends CActiveRecord
                 return false;
             } else
             {
-                Items::model()->addItem($char_id, $id, $count);
+                Items::model()->addItem($char_id, $id, $count, $stackable);
                 $balance->balance=$balance->balance-$price;
                 $balance->saveAttributes(array('balance'));
                 Transactions::model()->addTransaction($player->account_name, $player->char_name, $shop->id, $shop->item_name, $count, $shop->price);
@@ -149,10 +154,17 @@ class PayShop extends CActiveRecord
             }
         }
         
-        public function GridViewCount($type) {
-            if ($type=='count') {
-                return CHtml::textField("count", "", array("class"=>"span1", "maxlength"=>4));
+        public function getLink($data, $char_id)
+        {
+            if ($data->type=='stackable') {
+                
             }
-            return 1;
+            return CHtml::beginForm() . 
+                   CHtml::textField("count", $data->count, array("class"=>"span1", "maxlength"=>4)) . 
+                   CHtml::linkButton(' Купить',array(
+                          'submit'=>Yii::app()->controller->createUrl("add",array("id"=>$data->primaryKey,"char"=>$char_id)),
+                          'confirm'=>"Вы уверены, что хотите купить данный итем?")).
+                   CHtml::endForm();
         }
+
 }

@@ -121,7 +121,11 @@ class PayShopController extends Controller
         public function actionAdd($id)
 	{
                         $char_id=$_GET['char'];
-                        $count=1;
+                        if (!empty($_POST['count']))
+                        {
+                          $count=$_POST['count']; 
+                        } else
+                        { $count=1; }
                         if (PayShop::model()->buyItem($id, $char_id, $count)){
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))

@@ -137,8 +137,9 @@ class Items extends CActiveRecord
 		));
 	}
         
-        public function addItem($char_id, $item_id, $count) {
-           
+        public function addItem($char_id, $item_id, $count, $stackable) {
+          
+        if ($stackable===true) {
         $result = Items::model()->findByAttributes(array('item_id' => $item_id, 'owner_id' => $char_id));
            if ($result !== NULL) {
                 $result->count = $result->count+$count; 
@@ -155,7 +156,19 @@ class Items extends CActiveRecord
                $model->loc_data = 0;
                $model->save(false);
            }
-        
+        } else
+        {
+               $model = new Items;
+               $object_id = Yii::app()->db->createCommand("SELECT MAX(object_id) FROM items")->queryScalar();
+               $model->object_id = $object_id+1;
+               $model->owner_id = $char_id;
+               $model->item_id = $item_id;
+               $model->count = 1;
+               $model->enchant_level = 0;
+               $model->loc = 'INVENTORY';
+               $model->loc_data = 0;
+               $model->save(false);
+        }
         }
         
         public function exchange($char_id, $item_id, $count) {

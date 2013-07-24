@@ -26,7 +26,7 @@ class SiteController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('history','pass'),
+				'actions'=>array('history','pass','email'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -242,7 +242,7 @@ class SiteController extends Controller
               
           }
 
-                    public function sendEmail($email, $subject, $body) {
+          public function sendEmail($email, $subject, $body) {
               
                 $subject='=?UTF-8?B?'.base64_encode($subject).'?=';
 
@@ -259,5 +259,27 @@ class SiteController extends Controller
                 } 
               
           }
+          
+        public function actionEmail()
+	{
+            $model = Accounts::model()->find('login=:login', array(':login'=>Yii::app()->user->name));
+                if (!isset($model))
+                    throw new CHttpException(404);
+            $model->scenario = Accounts::SCENARIO_SIGNUP;
+            if(isset($_POST['Accounts'])){
+            $model->attributes=$_POST['Accounts'];
+            $attribs = array('email');
+                if ($model->validate($attribs)){
+                    if( $model->saveAttributes($attribs) ) {
+                        Yii::app()->user->setFlash('success', 'Email изменен');
+                        $this->redirect(array('/site/email'));
+                    }
+                } else {
+                    Yii::app()->user->setFlash('pass_error', 'Ошибка. Email не изменен');
+                }
+            }
+            $this->render('changemail', array('model'=>$model));
+            
+	}
 
 }

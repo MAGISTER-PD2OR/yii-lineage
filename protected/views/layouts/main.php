@@ -41,6 +41,7 @@
                     array('label'=>'Регистрация', 'url'=>array('/site/signup'), 'visible'=>Yii::app()->user->isGuest),
                     array('label'=>Yii::app()->user->name, 'url'=>'#', 'items'=>array(
                     array('label'=>'Пароль', 'icon'=>'icon-cog', 'url'=>array('/site/pass')),
+                    array('label'=>'Email', 'icon'=>'icon-cog', 'url'=>array('/site/email')),
                     array('label'=>'Выход', 'icon'=>'icon-off', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
                 ), 'visible'=>!Yii::app()->user->isGuest),
                 ),

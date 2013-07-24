@@ -20,7 +20,8 @@
 
 	<?php echo $form->textFieldRow($model,'price',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'status',array('class'=>'span5')); ?>
+	<?php //echo $form->textFieldRow($model,'status',array('class'=>'span5')); ?>
+        <?php echo $form->dropDownListRow($model,'status', array('1'=>'Активно', '2'=>'Черновик') , array('class'=>'span5')); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

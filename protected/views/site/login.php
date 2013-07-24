@@ -9,10 +9,9 @@
 	),
 )); ?>
 
-        <?php echo $model->getAttributeLabel('name'); ?>
-        <?php echo $form->textField($model,'name', array('class'=>'span4')); ?>
-        <?php echo $model->getAttributeLabel('password').' '.CHtml::link('(напомнить пароль)', array('/site/recovery')); ?>
-	<?php echo $form->passwordField($model,'password', array('class'=>'span4')); ?>
+        <?php echo $form->textFieldRow($model,'name', array('class'=>'span4')); ?>
+	<?php echo $form->passwordFieldRow($model,'password', array('class'=>'span4')); ?>
+        <?php echo '<p>'.CHtml::link('(напомнить пароль)', array('/site/recovery')).'</p>'; ?>
     
         <?php 
         if(CCaptcha::checkRequirements()) {
@@ -21,13 +20,14 @@
         }
         }
         ?>
-
+        <div align=center>
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
             'buttonType'=>'submit',
             'type'=>'primary',
             'label'=>'Вход',
             'htmlOptions'=>array('class'=>'btn btn-info'),
         )); ?>
+        </div>
 
 <?php $this->endWidget(); ?>
 

@@ -59,8 +59,8 @@ class Accounts extends CActiveRecord
 			array('login, password', 'required'),
                         // Логин должен быть уникальным
                         array('login', 'unique'),
-                        // Длина логина должна быть в пределах от 5 до 32 символов
-                        array('login', 'length','min'=>5, 'max'=>32),
+                        // Длина логина должна быть в пределах от 4 до 32 символов
+                        array('login', 'length','min'=>4, 'max'=>32),
                         // Логин должен соответствовать шаблону
                         array('login', 'match', 'pattern'=>'/^[A-z][\w]+$/', 'on'=>self::SCENARIO_SIGNUP),
 			array('last_access, access_level, last_server, bonus, bonus_expire, ban_expire, points', 'numerical', 'integerOnly'=>true),

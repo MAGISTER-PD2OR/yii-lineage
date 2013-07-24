@@ -40,6 +40,8 @@ class LoginForm extends CFormModel
 		return array(
 			'rememberMe'=>'Запомнить меня в следующий раз',
                     	'verifyCode' => 'Код проверки',
+                        'name' => 'Логин',
+                        'password' => 'Пароль',
 		);
 	}
 

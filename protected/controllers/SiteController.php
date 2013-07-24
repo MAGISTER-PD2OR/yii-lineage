@@ -22,7 +22,7 @@ class SiteController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','login','logout','error','contact','captcha','signup'),
+				'actions'=>array('index','login','logout','error','contact','captcha','signup','recovery'),
 				'users'=>array('*'),
 			),
 			array('allow',
@@ -212,7 +212,37 @@ class SiteController extends Controller
               )); 
           }
           
-          public function sendEmail($email, $subject, $body) {
+          public function actionRecovery()
+          {
+              $form = new RecoveryForm;
+                if(isset($_POST['RecoveryForm'])) {
+                $form->attributes=$_POST['RecoveryForm'];
+                if($form->validate()) {
+                        $model = Accounts::model()->find('login=:login and email=:email', array(':login'=>$form->login, ':email'=>$form->email));
+                if (!isset($model)) {
+                    Yii::app()->user->setFlash('pass_error', 'Пользователя с таким логином и е-mail адресом не обнаружено');
+                } else {
+                  $new_password = substr(md5(date('YmdHis')), 2, 6);
+                  $model->password=$new_password;
+                  if($model->save(false)) {
+                      $body = 'Здравствуйте, '.$model->login.'\n Мы сгененриоровали для Вас пароль, теперь Вы сможете войти в игру, используя его. После входа желательно его сменить.\n Пароль: '.$new_password;
+                      $result = $this->sendEmail($model->email, 'Восстановление пароля', $body);
+                      if ($result===true) {
+                          $result_email =  'На ваш email <b>'.$model->email.'</b> отправлено письмо';
+                      } else {
+                          $result_email = 'Ошибка отправки email: '.$result;
+                      }
+                      Yii::app()->user->setFlash('success', $result_email);
+                      $this->redirect(array('recovery')); 
+                        }
+                    }
+                  }
+                }
+              $this->render('recovery',array('model'=>$form));
+              
+          }
+
+                    public function sendEmail($email, $subject, $body) {
               
                 $subject='=?UTF-8?B?'.base64_encode($subject).'?=';
 

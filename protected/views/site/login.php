@@ -9,9 +9,10 @@
 	),
 )); ?>
 
-	<?php echo $form->textFieldRow($model,'name', array('class'=>'span4')); ?>
-
-	<?php echo $form->passwordFieldRow($model,'password', array('class'=>'span4')); ?>
+        <?php echo $model->getAttributeLabel('name'); ?>
+        <?php echo $form->passwordField($model,'name', array('class'=>'span4')); ?>
+        <?php echo $model->getAttributeLabel('password').' '.CHtml::link('(напомнить пароль)', array('/site/recovery')); ?>
+	<?php echo $form->passwordField($model,'password', array('class'=>'span4')); ?>
     
         <?php 
         if(CCaptcha::checkRequirements()) {

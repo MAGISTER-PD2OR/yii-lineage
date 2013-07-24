@@ -25,7 +25,9 @@
 class Accounts extends CActiveRecord
 {
     const SCENARIO_UPDATE = 'update';
+    const SCENARIO_SIGNUP = 'signup';
     public $password_repeat;
+    public $verifyCode;
     
 	/**
 	 * Returns the static model of the specified AR class.
@@ -53,18 +55,33 @@ class Accounts extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+                        // Логин и пароль - обязательные поля
 			array('login, password', 'required'),
+                        // Логин должен быть уникальным
+                        array('login', 'unique'),
+                        // Длина логина должна быть в пределах от 5 до 32 символов
+                        array('login', 'length','min'=>5, 'max'=>32),
+                        // Логин должен соответствовать шаблону
+                        array('login', 'match', 'pattern'=>'/^[A-z][\w]+$/', 'on'=>self::SCENARIO_SIGNUP),
 			array('last_access, access_level, last_server, bonus, bonus_expire, ban_expire, points', 'numerical', 'integerOnly'=>true),
-			array('login', 'length', 'max'=>32),
 			array('allow_ip, allow_hwid', 'length', 'max'=>255),
 			array('last_ip', 'length', 'max'=>15),
-			array('email, email_activ_code, email_activated, ident_code, ban_time_ipsys', 'length', 'max'=>45),
+			array('email_activ_code, email_activated, ident_code, ban_time_ipsys', 'length', 'max'=>45),
+                        // Почта проверяется на соответствие типу
+                        array('email', 'email', 'on'=>self::SCENARIO_SIGNUP),
+                        // Почта должна быть в пределах от 6 до 50 символов
+                        array('email', 'length', 'min'=>6, 'max'=>45),
+                        // Почта должна быть уникальной
+                        //array('email', 'unique'),
+                        // email - обязательное поле при регистрации
+                        array('email', 'required', 'on'=>self::SCENARIO_SIGNUP),
                         // Длина пароля не менее 4 символов
                         array('password', 'length', 'min'=>4, 'max'=>30),
                         // Длина повторного пароля не менее 4 символов
                         array('password_repeat', 'length', 'min'=>4, 'max'=>30),
                         // Пароль должен совпадать с повторным паролем для сценария регистрации
-                        array('password', 'compare', 'compareAttribute'=>'password_repeat', 'on'=>self::SCENARIO_UPDATE),
+                        array('password', 'compare', 'compareAttribute'=>'password_repeat', 'on'=>self::SCENARIO_UPDATE.', '.self::SCENARIO_SIGNUP),
+                        array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on'=>self::SCENARIO_SIGNUP),
 			array('login, password, last_access, access_level, last_ip, last_server, bonus, bonus_expire, ban_expire, allow_ip, allow_hwid, points, email, email_activ_code, email_activated, ident_code, ban_time_ipsys', 'safe', 'on'=>'search'),
 		);
 	}
@@ -86,8 +103,8 @@ class Accounts extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'login' => 'Login',
-			'password' => 'Password',
+			'login' => 'Логин',
+			'password' => 'Пароль',
 			'last_access' => 'Last Access',
 			'access_level' => 'Access Level',
 			'last_ip' => 'Last Ip',
@@ -103,6 +120,8 @@ class Accounts extends CActiveRecord
 			'email_activated' => 'Email Activated',
 			'ident_code' => 'Ident Code',
 			'ban_time_ipsys' => 'Ban Time Ipsys',
+                        'password_repeat' => 'Ещё раз пароль',
+                        'verifyCode' => 'Код проверки',
 		);
 	}
 

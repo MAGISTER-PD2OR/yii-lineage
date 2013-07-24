@@ -22,7 +22,7 @@ class SiteController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','login','logout','error','contact','captcha'),
+				'actions'=>array('index','login','logout','error','contact','captcha','signup'),
 				'users'=>array('*'),
 			),
 			array('allow',
@@ -172,11 +172,11 @@ class SiteController extends Controller
             $model = Accounts::model()->find('login=:login', array(':login'=>Yii::app()->user->name));
                 if (!isset($model))
                     throw new CHttpException(404);
-                $model->scenario = 'update';
+                $model->scenario = Accounts::SCENARIO_UPDATE;
                 $model->unsetAttributes(array('password'));
             if(isset($_POST['Accounts'])){
             $model->attributes=$_POST['Accounts'];
-                if($model->save()){
+                if($model->save(false)){
                 Yii::app()->user->setFlash('success', 'Пароль изменен');
                 $this->redirect(array('/site/pass'));
                 } else {
@@ -185,6 +185,49 @@ class SiteController extends Controller
             }
             $this->render('changepassword', array('model'=>$model));
             
-	} 
+	}
         
+          public function actionSignup() 
+          { 
+              $model=new Accounts(Accounts::SCENARIO_SIGNUP);
+
+              if(isset($_POST['Accounts'])) 
+              { 
+                  $model->attributes=$_POST['Accounts']; 
+                  if($model->save()) {
+                      $body = 'Здравствуйте, '.$model->login.'\n Поздравляем - Вы успешно зарегистрированы на сайте '.Yii::app()->params['adminDomen'];
+                      $result = $this->sendEmail($model->email, 'Регистрация', $body);
+                      if ($result===true) {
+                          $result_email =  'На ваш email <b>'.$model->email.'</b> отправлено письмо';
+                      } else {
+                          $result_email = 'Ошибка отправки email: '.$result;
+                      }
+                      Yii::app()->user->setFlash('success', 'Аккаунт <b>'.$model->login.'</b> создан. '.$result_email);
+                      $this->redirect(array('signup')); 
+                  }
+              } 
+
+              $this->render('signup',array( 
+                  'model'=>$model, 
+              )); 
+          }
+          
+          public function sendEmail($email, $subject, $body) {
+              
+                $subject='=?UTF-8?B?'.base64_encode($subject).'?=';
+
+                $mail=Yii::app()->Smtpmail;
+                $mail->CharSet = 'UTF-8';
+                $mail->SetFrom(Yii::app()->params['adminEmail'], Yii::app()->params['adminDomen']);
+                $mail->Subject = $subject;
+                $mail->MsgHTML($body);
+                $mail->AddAddress(Yii::app()->params['adminEmail'], "");
+                if(!$mail->Send()) {
+                    return $mail->ErrorInfo;
+                }else {
+                    return true;
+                } 
+              
+          }
+
 }

@@ -38,6 +38,7 @@
             'htmlOptions'=>array('class'=>'pull-right'),
             'items'=>array(
                     array('label'=>'Вход', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                    array('label'=>'Регистрация', 'url'=>array('/site/signup'), 'visible'=>Yii::app()->user->isGuest),
                     array('label'=>Yii::app()->user->name, 'url'=>'#', 'items'=>array(
                     array('label'=>'Пароль', 'icon'=>'icon-cog', 'url'=>array('/site/pass')),
                     array('label'=>'Выход', 'icon'=>'icon-off', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)

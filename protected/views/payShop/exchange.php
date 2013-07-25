@@ -1,10 +1,14 @@
 <?php
 $button_label='Обменять';
-$this->pageTitle = Yii::app()->name . ' - Обмен валют';
-$this->breadcrumbs = array(
-    'Обмен валют',
-);
+$this->pageTitle = Yii::app()->name . ' - Обменник';
+$this->breadcrumbs = array('Обменник');
 ?>
+
+<h3>Обменник</h3>
+
+<div class="alert in alert-block fade alert-danger">
+     <b>Сервис не работает</b>
+</div>
 
 <div class="alert in alert-block fade alert-info">
      <b>Кредитов: 
@@ -27,25 +31,6 @@ $this->breadcrumbs = array(
 ?>
 
 <?php
-
 echo 'Обмен игровой валюты по курсу 1 кредит = '.Yii::app()->params['exchangeCredits'].' руб.';
-
-//$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-//    'id' => 'bonus-form',
-//    'enableAjaxValidation' => false,
-//        ));
-//
-//
-//echo $form->hiddenField($model, 'name');
-//echo $form->textFieldRow($model,'count', array('class'=>'span2'));
-//
-//
-//$this->widget('bootstrap.widgets.TbButton', array(
-//    'buttonType' => 'submit',
-//    'type' => 'success',
-//    'label' => $button_label,
-//));
-//
-//$this->endWidget(); 
 
 ?>

@@ -80,7 +80,7 @@ class Characters extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-                        array('account_name', 'required'),
+                        array('account_name, obj_Id, char_name', 'required'),
 			array('obj_Id, face, hairStyle, hairColor, sex, heading, x, y, z, karma, pvpkills, pkkills, clanid, rec_have, rec_left, rec_bonus_time, hunt_points, hunt_time, accesslevel, online, nochannel, pledge_type, pledge_rank, lvl_joined_academy, pcBangPoints, vitality, fame, bookmarks, bot_report_points', 'numerical', 'integerOnly'=>true),
 			array('account_name', 'length', 'max'=>45),
 			array('char_name', 'length', 'max'=>35),

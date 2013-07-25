@@ -43,6 +43,7 @@ class PayBalance extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, login, balance', 'safe', 'on'=>'search'),
+                        array('balance', 'compare', 'operator' => '>=', 'compareValue' => 0.01, 'message' => 'Минимальная сумма 0.01.'),
 		);
 	}
 
@@ -64,8 +65,8 @@ class PayBalance extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'login' => 'Login',
-			'balance' => 'Balance',
+			'login' => 'Логин',
+			'balance' => 'Сумма',
 		);
 	}
 

@@ -23,8 +23,10 @@
             'items'=>array(
                 array('label'=>'Главная', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Контакты', 'url'=>array('/site/contact'), 'visible'=>!Yii::app()->user->isGuest),
-                array('label'=>'Персонаж', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Перенос', 'icon'=>'icon-share-alt', 'url'=>array('/site/ChangeAccount')),
+                array('label'=>'Сервисы', 'url'=>'#', 'items'=>array(
+                    array('label'=>'Перенос персонажа', 'icon'=>'icon-share-alt', 'url'=>array('/site/ChangeAccount')),
+                    array('label'=>'Перевод баланса', 'icon'=>'icon-random', 'url'=>array('/site/BalanceTransfer')),
+                    array('label' => 'Обменник', 'icon' => 'icon-repeat', 'url' => array('/payShop/exchange')),
                     ), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Админка', 'url'=>'#', 'items'=>array(
                     array('label'=>'Баланс', 'url'=>array('/payBalance')),

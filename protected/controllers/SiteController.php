@@ -26,7 +26,7 @@ class SiteController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('history','pass','email','changeaccount'),
+				'actions'=>array('history','pass','email','changeaccount','balancetransfer'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -286,8 +286,7 @@ class SiteController extends Controller
         {
           $from_login = Yii::app()->user->name;
           $model = new Characters;
-            if (!isset($model))
-                throw new CHttpException(404);
+
             if(isset($_POST['Characters'])){
                 
             $model->attributes=$_POST['Characters'];
@@ -303,6 +302,61 @@ class SiteController extends Controller
                 $this->redirect(array('/site/ChangeAccount'));
                 }
           $this->render('change_account', array('model'=>$model));  
+        }
+        
+        public function actionBalanceTransfer()
+        {
+                $flash = 'error';
+                $from_login = Yii::app()->user->name;
+		$model=new PayBalance;
+
+		if(isset($_POST['PayBalance']))
+		{
+			$model->attributes=$_POST['PayBalance'];
+                        $my_balance = PayBalance::model()->find('login=:login', array(':login'=>$from_login));
+                        if ($from_login==$model->login) {
+                            $result = 'Нельзя переводить средства на свой аккаунт';
+                        } else {
+                        if($my_balance->balance<$model->balance){
+                            $result='Недостаточно средств';
+                        } else {
+                        $account = Yii::app()->db->createCommand("SELECT 1 FROM accounts where login='$model->login'")->queryScalar();
+                        if ($account<>1) {
+                            $result= 'Аккаунт не найден';
+                        } else {
+                            $target_balance = PayBalance::model()->find('login=:login', array(':login'=>$model->login));
+                              if (!isset($target_balance)) {
+                                  $target_new_balance = new PayBalance;
+                                  $target_new_balance->login=$model->login;
+                                  $result = $this->balanceTransfer($my_balance, $target_new_balance, $model, $from_login);
+                                  if (substr($result, 0, 5)!=='Error')
+                                  $flash = 'success';
+                              } else {
+                                  $result = $this->balanceTransfer($my_balance, $target_balance, $model, $from_login);
+                                  if (substr($result, 0, 5)!=='Error')
+                                  $flash = 'success';
+                              }
+                           }
+                         }
+                        }
+                        Yii::app()->user->setFlash($flash, $result);
+			$this->redirect(array('/site/BalanceTransfer'));
+		}
+
+		$this->render('balancetransfer',array('model'=>$model,));
+        }
+        
+        public function balanceTransfer($my_balance, $target_balance, $model, $from_login)
+        {
+            $target_balance->balance=$target_balance->balance+$model->balance;
+             if ($target_balance->save()) {
+                 $my_balance->balance=$my_balance->balance-$model->balance;
+                 $my_balance->saveAttributes(array('balance'));
+                 Transactions::model()->addTransaction($from_login, '', 4, "Перевод средств на аккаунт $model->login", 1, $model->balance);
+                 return "Средства $model->balance переведены на аккаунт $model->login";
+             } else {
+                 return 'Error. Невозможно перевести средства';
+             }
         }
 
 }

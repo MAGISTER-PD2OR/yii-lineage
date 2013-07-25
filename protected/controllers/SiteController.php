@@ -26,7 +26,7 @@ class SiteController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('history','pass','email'),
+				'actions'=>array('history','pass','email','changeaccount'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -281,5 +281,28 @@ class SiteController extends Controller
             $this->render('changemail', array('model'=>$model));
             
 	}
+        
+        public function actionChangeAccount()
+        {
+          $from_login = Yii::app()->user->name;
+          $model = new Characters;
+            if (!isset($model))
+                throw new CHttpException(404);
+            if(isset($_POST['Characters'])){
+                
+            $model->attributes=$_POST['Characters'];
+            $balance = PayBalance::model()->find('login=:login', array(':login'=>$from_login));
+            
+            if($balance->balance<Yii::app()->params['change_account']){
+                $result='Недостаточно средств';
+            } else {
+            $result = $model->change_account($model->account_name, $model->char_name, $balance, $from_login);
+            }
+
+                Yii::app()->user->setFlash('pass_error', $result);
+                $this->redirect(array('/site/ChangeAccount'));
+                }
+          $this->render('change_account', array('model'=>$model));  
+        }
 
 }

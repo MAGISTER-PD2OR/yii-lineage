@@ -80,6 +80,7 @@ class Characters extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+                        array('account_name', 'required'),
 			array('obj_Id, face, hairStyle, hairColor, sex, heading, x, y, z, karma, pvpkills, pkkills, clanid, rec_have, rec_left, rec_bonus_time, hunt_points, hunt_time, accesslevel, online, nochannel, pledge_type, pledge_rank, lvl_joined_academy, pcBangPoints, vitality, fame, bookmarks, bot_report_points', 'numerical', 'integerOnly'=>true),
 			array('account_name', 'length', 'max'=>45),
 			array('char_name', 'length', 'max'=>35),
@@ -110,9 +111,9 @@ class Characters extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'account_name' => 'Account Name',
-			'obj_Id' => 'Obj',
-			'char_name' => 'Char Name',
+			'account_name' => 'Аккаунт',
+			'obj_Id' => 'Идент. персонажа',
+			'char_name' => 'Персонаж',
 			'face' => 'Face',
 			'hairStyle' => 'Hair Style',
 			'hairColor' => 'Hair Color',
@@ -223,4 +224,36 @@ class Characters extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function getCharList($login) {
+            $models = self::model()->findAll('account_name=:account_name and online=0', array(':account_name'=>$login));
+	    return CHtml::listData($models, 'char_name', 'char_name');
+        }
+        
+        public function change_account($login, $char, $balance, $from_login) {
+              $account = Yii::app()->db->createCommand("SELECT 1 FROM accounts where login='$login'")->queryScalar();
+              if ($account<>1) {
+                  return 'Аккаунт не найден';
+              } else {
+              $target_char_count = Yii::app()->db->createCommand("SELECT count(1) FROM characters where account_name='$login'")->queryScalar();
+              if ($target_char_count>=7) {
+                  return 'У целевого аккаунта 7 или более персонажей';
+              } else {
+              $model = self::model()->find('char_name=:char_name and online=0', array(':char_name'=>$char));
+                if (!isset($model)) {
+                    return 'Персонаж онлайн или не найден.';
+                } else {
+                    $model->account_name = $login;
+                    if ($model->save()) {
+                        $balance->balance=$balance->balance-Yii::app()->params['change_account'];
+                        $balance->saveAttributes(array('balance'));
+                        Transactions::model()->addTransaction($from_login, $char, 5, "Перенос персонажа на аккаунт $login", 1, Yii::app()->params['change_account']);
+                        return "Персонаж $char перенесен на аккаунт $login";
+                    } else {
+                        return 'Ошибка. Невозможно перенести персонажа';
+                    }
+                }
+              }
+              }
+        }
 }

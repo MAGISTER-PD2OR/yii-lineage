@@ -94,7 +94,7 @@ return array(
 
 	// using Yii::app()->params['paramName']
 	'params'=>array(
-		'credits'=>'100',
+		'change_account'=>'100',
                 'adminEmail'=>'mm555-99@mail.ru',
                 'adminName'=>'mazdik',
                 'adminDomen'=>'lineage7.ru',

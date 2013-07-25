@@ -147,6 +147,7 @@ class Transactions extends CActiveRecord
         $command->insert('pay_transactions', array(
             'ip' => Yii::app()->request->getUserHostAddress(),
             'login' => $fio,
+            'item_type' =>7,
             'count' => 1,
             'price_one' => $summ,
             'item_name' => 'Пополнение баланса',
@@ -191,6 +192,7 @@ class Transactions extends CActiveRecord
             $model=new Transactions;
             $model->ip=Yii::app()->request->getUserHostAddress();
             $model->login=$login;
+            $model->item_type=6;
             $model->item_name='Обмен валют';
             $model->count=$count;
             $model->price_one=$price_one;

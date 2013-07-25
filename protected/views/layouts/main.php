@@ -23,6 +23,9 @@
             'items'=>array(
                 array('label'=>'Главная', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Контакты', 'url'=>array('/site/contact'), 'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'Персонаж', 'url'=>'#', 'items'=>array(
+                    array('label'=>'Перенос', 'icon'=>'icon-share-alt', 'url'=>array('/site/ChangeAccount')),
+                    ), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Админка', 'url'=>'#', 'items'=>array(
                     array('label'=>'Баланс', 'url'=>array('/payBalance')),
                     array('label'=>'История', 'url'=>array('/transactions')),

@@ -27,11 +27,11 @@ class PayShopController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','add','accepted','fail'),
+				'actions'=>array('index','view','add','accepted','fail','exchange'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','create','update','list','exchange'),
+				'actions'=>array('admin','delete','create','update','list'),
 				'users'=>array(Yii::app()->params['adminName']),
 			),
 			array('deny',  // deny all users

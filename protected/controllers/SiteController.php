@@ -248,10 +248,10 @@ class SiteController extends Controller
 
                 $mail=Yii::app()->Smtpmail;
                 $mail->CharSet = 'UTF-8';
-                $mail->SetFrom(Yii::app()->params['adminEmail'], Yii::app()->params['adminDomen']);
+                $mail->SetFrom(Yii::app()->params['adminEmail'], 'noreply@'.Yii::app()->request->serverName);
                 $mail->Subject = $subject;
                 $mail->MsgHTML($body);
-                $mail->AddAddress(Yii::app()->params['adminEmail'], "");
+                $mail->AddAddress($email, "");
                 if(!$mail->Send()) {
                     return $mail->ErrorInfo;
                 }else {

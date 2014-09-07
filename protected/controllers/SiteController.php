@@ -26,7 +26,7 @@ class SiteController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('history','pass','email','changeaccount','balancetransfer'),
+				'actions'=>array('history','pass','email','changeaccount','balancetransfer','lk'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -65,7 +65,13 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-             $this->render('index');
+            $this->layout=null;
+            $this->render('index');
+	}
+        
+	public function actionLk()
+	{
+            $this->render('lk');
 	}
 
 	public function actionHistory()
@@ -132,6 +138,7 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
+                $this->layout='//layouts/column1';
 		$model = $this->captchaRequired()? new LoginForm('captchaRequired') : new LoginForm;
 
 		// if it is ajax validation request
@@ -147,7 +154,7 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+				$this->redirect(array('/site/lk'));
                         else
                           {
                             $this->counter = Yii::app()->session->itemAt('captchaRequired') + 1;

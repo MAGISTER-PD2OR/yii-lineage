@@ -1,0 +1,40 @@
+html, body, #wrap { 
+    height: 100%; 
+}
+body > #wrap {
+    height: auto; 
+    min-height: 100%;
+    background-color: #779cb6;
+}
+#page { 
+    //padding-top: 60px;
+    //padding-bottom: 120px;   /* must be same height as the footer */
+    padding-left: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+.footer {
+    position: relative;
+    //margin-top: -120px; /* negative value of footer height */
+    //height: 120px;
+    padding: 15px 0 5px 0;
+    color: #FFF;
+    background-color: #1b1b1b;
+    clear:both;
+}
+.footer a {
+    color: #FFF;
+}
+.footer a:hover {
+    color: #FFF;
+}
+.copyright {
+    float: left;
+}
+.developer {
+    float: right;
+}
+.margin_tab {
+    height: 60px;
+    background-color: #779cb6;
+}

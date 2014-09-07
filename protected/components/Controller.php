@@ -20,4 +20,21 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+        public $metaDescription;
+        public $metaKeywords;
+
+        public function getMetaDescription() {
+            if (!$this->metaDescription)
+                return "Бесплатный сервер Lineage 2";
+            //return default description
+            return $this->metaDescription;
+        }
+
+        public function getMetaKeywords() {
+            if (!$this->metaKeywords)
+                return "lineage, mmorpg, pvp, пвп сервер lineage 2, мультидроп, крафт сервер, мультиспойл";
+            //return default keywords   
+            return $this->metaKeywords;
+        }
+
 }

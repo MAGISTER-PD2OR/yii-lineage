@@ -26,8 +26,9 @@ Yii::app()->clientScript->registerMetaTag($this->getMetaKeywords(), 'keywords');
         array(
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
-                array('label'=>'Главная', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
-                array('label'=>'Контакты', 'url'=>array('/site/contact'), 'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'Форум', 'url'=>'http://forum.'.$_SERVER['HTTP_HOST'], 'linkOptions'=>array('rel'=>'nofollow', 'target'=>'_blank')),
+                array('label'=>'ЛК', 'url'=>array('/site/lk'), 'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'Напомнить пароль', 'url'=>array('/site/recovery'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Сервисы', 'url'=>'#', 'items'=>array(
                     array('label'=>'Перенос персонажа', 'icon'=>'icon-share-alt', 'url'=>array('/site/ChangeAccount')),
                     array('label'=>'Перевод баланса', 'icon'=>'icon-random', 'url'=>array('/site/BalanceTransfer')),
@@ -66,10 +67,10 @@ Yii::app()->clientScript->registerMetaTag($this->getMetaKeywords(), 'keywords');
     <div class="search_tab">
         <div class="search_title">
             Сейчас у нас<br>
-            Онлайн: <font color="#4F7C4F" face="Tahoma">8</font><br>
-            Login: <font color="#4F7C4F" face="Tahoma">On</font><br>
-            Game: <font color="#4F7C4F" face="Tahoma">On</font><br>
-            Рейты: x100<br>
+            Онлайн: <font color="#4F7C4F" face="Tahoma"><?php echo Helper::get_online(); ?></font><br>
+            Login: <?php echo Helper::get_login_status(); ?><br>
+            Game: <?php echo Helper::get_game_status(); ?><br>
+            Рейты: x<?php echo Yii::app()->params['rate']; ?>
         </div>
     </div>
 </div>
@@ -101,7 +102,7 @@ Yii::app()->clientScript->registerMetaTag($this->getMetaKeywords(), 'keywords');
         <div class="clearfix"></div>
         <p>
             <?php echo CHtml::link(CHtml::image("/images/vkontakte.png", "Мы в контакте", array('width'=>'120px')),
-                'http://vkontakte.ru/club22694761', array('rel'=>'nofollow')); ?>
+                'http://vkontakte.ru/club22694761', array('rel'=>'nofollow', 'target'=>'_blank')); ?>
         </p>
         <div class="center">
         <?php $this->renderPartial('//layouts/_counters'); ?>

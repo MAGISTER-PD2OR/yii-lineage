@@ -43,9 +43,9 @@ return array(
        
                 'Smtpmail'=>array(
                     'class'=>'application.extensions.smtpmail.PHPMailer',
-                    'Host'=>"smtp.mail.ru",
-                    'Username'=>'admin@mail.ru',
-                    'Password'=>'password',
+                    'Host'=>"smtp.yandex.ru",
+                    'Username'=>'gqdev@yandex.ru',
+                    'Password'=>'55599111',
                     'Mailer'=>'smtp',
                     'Port'=>25,
                     'SMTPAuth'=>true, 
@@ -71,7 +71,7 @@ return array(
 	'params'=>array(
                 'rate'=>'100',
 		'change_account'=>'100',
-                'adminEmail'=>'mm555-99@mail.ru',
+                'adminEmail'=>'gqdev@yandex.ru',
                 'adminName'=>'mazdik',
                 'adminDomen'=>'lineage7.ru',
                 'waytopayLogin' =>'3236',

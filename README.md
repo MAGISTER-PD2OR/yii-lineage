@@ -3,6 +3,7 @@ Yii_lineage
 Configuration
 ------------------------------
 Yii_lineage\protected\config\main.php
+
 Yii_lineage\protected\config\production.php
 
 ```php
@@ -45,16 +46,23 @@ Execute SQL script files in Yii_lineage\protected\data
 waytopay
 ------------------------------
 Result URL
+
 http://domen.ru/index.php/pay/process
+
 Success URL
+
 http://domen.ru/
+
 Fail URL
+
 http://domen.ru/
+
 Метод отсылки данных по Result URL
+
 POST
 
 
 
-### Links
-
+Links
+------------------------------
 Author http://mazdik.ru/

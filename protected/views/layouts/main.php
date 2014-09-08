@@ -67,7 +67,7 @@ Yii::app()->clientScript->registerMetaTag($this->getMetaKeywords(), 'keywords');
     <div class="search_tab">
         <div class="search_title">
             Сейчас у нас<br>
-            Онлайн: <font color="#4F7C4F" face="Tahoma"><?php echo Helper::get_online(); ?></font><br>
+            Онлайн: <span class="text-success"><?php echo Helper::get_online(); ?></span><br>
             Login: <?php echo Helper::get_login_status(); ?><br>
             Game: <?php echo Helper::get_game_status(); ?><br>
             Рейты: x<?php echo Yii::app()->params['rate']; ?>

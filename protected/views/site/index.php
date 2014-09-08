@@ -37,9 +37,9 @@ $this->pageTitle=Yii::app()->name;
         'buttons'=>array(
             array('label'=>'Скачать', 'items'=>array(
                 array('label'=>'L2.ini', 'url'=>'/download/l2-inet.zip'),
-                array('label'=>'Патч', 'url'=>''),
-                '---',
                 array('label'=>'L2.ini для кристалла', 'url'=>'/download/l2-local.zip'),
+                '---',
+                array('label'=>'Патч HF', 'url'=>'https://dl.dropbox.com/u/31827471/lineage7.zip'),
             )),
         ),
     )); ?>

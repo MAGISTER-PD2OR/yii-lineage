@@ -8,15 +8,17 @@ class Helper {
         $online = ($sock > 0);
         if ($online)
             @fclose($sock);
-        return $online ? '<font color=#4F7C4F face=Tahoma>On</font>' : '<font color=#9C5454 face=Tahoma>Off</font>';
+        return $online ? 'On' : 'Off';
     }
     
     public static function get_login_status() {
-        return self::get_status('localhost', '2106');
+        $status = self::get_status('localhost', '2106');
+        return ($status=='On') ? '<span class="text-success">On</span>' : '<span class="text-error">Off</span>';
     }
     
     public static function get_game_status() {
-        return self::get_status('localhost', '7777');
+        $status = self::get_status('localhost', '7777');
+        return ($status=='On') ? '<span class="text-success">On</span>' : '<span class="text-error">Off</span>';
     }
     
     public static function get_count_online() {
@@ -40,5 +42,12 @@ class Helper {
            return self::get_count_online(); 
         }
     }
+    
+    public static function renderJSON($data) {
+        header('Content-type: application/json');
+        echo CJSON::encode($data);
+        Yii::app()->end();
+    }
+
 
 }

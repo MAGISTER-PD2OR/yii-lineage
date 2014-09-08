@@ -22,7 +22,7 @@ class SiteController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','login','logout','error','contact','captcha','signup','recovery'),
+				'actions'=>array('index','login','logout','error','contact','captcha','signup','recovery','getdata'),
 				'users'=>array('*'),
 			),
 			array('allow',
@@ -365,5 +365,13 @@ class SiteController extends Controller
                  return 'Error. Невозможно перевести средства';
              }
         }
+        
+    public static function actionGetData() {
+        $login_status = Helper::get_status('localhost', '2106');
+        $game_status = Helper::get_status('localhost', '7777');
+        $online = Helper::get_count_online();
+        $data = array('login_status'=>$login_status, 'game_status'=>$game_status, 'online'=>$online);
+        Helper::renderJSON($data);
+    }
 
 }

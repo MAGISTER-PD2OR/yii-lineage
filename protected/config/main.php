@@ -20,7 +20,6 @@ return array(
 	'modules'=>array(
 	),
 
-	// application components
 	'components'=>array(
 		'user'=>array(
 			// enable cookie-based authentication
@@ -29,15 +28,17 @@ return array(
                 'bootstrap'=>array(
                     'class'=>'bootstrap.components.Bootstrap',
                 ),
-		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
-                        //'showScriptName'=>false,
+                        'showScriptName'=>false,
+                        'caseSensitive'=>false,
 			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                            ''=>'site/index',
+                            'contact'=>'site/contact',
+                            '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                            '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                            '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
        
@@ -59,8 +60,8 @@ return array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
 				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
+                                    'class'=>'CFileLogRoute',
+                                    'levels'=>'error, warning',
 				),
 
 			),

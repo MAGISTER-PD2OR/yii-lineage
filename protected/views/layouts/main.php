@@ -30,16 +30,16 @@ Yii::app()->clientScript->registerMetaTag($this->getMetaKeywords(), 'keywords');
                 array('label'=>'ЛК', 'url'=>array('/site/lk'), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Напомнить пароль', 'url'=>array('/site/recovery'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Сервисы', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Перенос персонажа', 'icon'=>'icon-share-alt', 'url'=>array('/site/ChangeAccount')),
-                    array('label'=>'Перевод баланса', 'icon'=>'icon-random', 'url'=>array('/site/BalanceTransfer')),
-                    array('label' => 'Обменник', 'icon' => 'icon-repeat', 'url' => array('/payShop/exchange')),
+                    array('label'=>'Перенос персонажа', 'icon'=>'icon-share-alt', 'url'=>array('/site/changeaccount')),
+                    array('label'=>'Перевод баланса', 'icon'=>'icon-random', 'url'=>array('/site/balancetransfer')),
+                    array('label' => 'Обменник', 'icon' => 'icon-repeat', 'url' => array('/payshop/exchange')),
                     ), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Админка', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Баланс', 'url'=>array('/payBalance')),
+                    array('label'=>'Баланс', 'url'=>array('/paybalance')),
                     array('label'=>'История', 'url'=>array('/transactions')),
                     array('label'=>'Магазин', 'url'=>'#', 'items'=>array(
-                        array('label'=>'Добавить', 'url'=>array('/payShop/create')),
-                        array('label'=>'Управление', 'url'=>array('/payShop/list')),
+                        array('label'=>'Добавить', 'url'=>array('/payshop/create')),
+                        array('label'=>'Управление', 'url'=>array('/payshop/list')),
                     )),
                 ), 'visible'=>Yii::app()->user->name==Yii::app()->params['adminName'])
             ),
@@ -101,7 +101,7 @@ Yii::app()->clientScript->registerMetaTag($this->getMetaKeywords(), 'keywords');
         <p class="developer"><?php echo CHtml::link('Контакты', array('/site/contact')); ?></p>
         <div class="clearfix"></div>
         <p>
-            <?php echo CHtml::link(CHtml::image("/images/vkontakte.png", "Мы в контакте", array('width'=>'120px')),
+            <?php echo CHtml::link(CHtml::image(Yii::app()->baseUrl.'/images/vkontakte.png', "Мы в контакте", array('width'=>'120px')),
                 'http://vkontakte.ru/club22694761', array('rel'=>'nofollow', 'target'=>'_blank')); ?>
         </p>
         <div class="center">

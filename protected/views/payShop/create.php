@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Магазин'=>array('index'),
-	'Добавить',
+        'Магазин'=>array('list'),
+	'Добавить товар',
 );
 
 ?>

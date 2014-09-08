@@ -32,10 +32,8 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
                         'showScriptName'=>false,
-                        'caseSensitive'=>false,
+                        //'caseSensitive'=>false,
 			'rules'=>array(
-                            ''=>'site/index',
-                            'contact'=>'site/contact',
                             '<controller:\w+>/<id:\d+>'=>'<controller>/view',
                             '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                             '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',

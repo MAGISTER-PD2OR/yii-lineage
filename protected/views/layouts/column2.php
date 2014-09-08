@@ -22,7 +22,7 @@
                 if ($player->online>0) {
                 $menu[] = array('label' => $player->char_name.' (Online)', 'icon' => 'icon-edit', 'url' => '');   
                 } else {
-                $menu[] = array('label' => $player->char_name, 'icon' => 'icon-shopping-cart', 'url' => array('/payshop?id='.$player->obj_Id.'&name='.$player->char_name));
+                $menu[] = array('label' => $player->char_name, 'icon' => 'icon-shopping-cart', 'url' => array('/payShop?id='.$player->obj_Id.'&name='.$player->char_name));
                     } 
                 }
             $this->widget('bootstrap.widgets.TbMenu', array(

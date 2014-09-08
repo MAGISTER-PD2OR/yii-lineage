@@ -4,7 +4,7 @@
     height: 668px;
     margin: auto;
     background-image: url(/images/main_bg.png); 
-    background-size: 100%;
+    background-size: 92%;
     background-position: center top;
     background-repeat: no-repeat;
 }
@@ -13,11 +13,29 @@
     height: 207px;
     background: url(/images/search_tab_bg.png) no-repeat center;
     float: right;
+    margin: 20px 285px 0 0;
+}
+@media (max-width: 1160px) {
+#main_bg {
+    height: 598px;
+}
+.search_tab  {
     margin: 0 235px 0 0;
+    }
+}
+@media (max-width: 979px) {
+.search_tab  {
+     margin: -10px 235px 0 0;
+    }
 }
 @media (max-width: 767px) {
-    .search_tab  {
-        margin: -60px 135px 0 0;
+.search_tab  {
+    margin: -50px 135px 0 0;
+    }
+}
+@media (max-width: 480px) {
+.search_tab  {
+    margin: -100px 35px 0 0;
     }
 }
 .search_title {

@@ -1,3 +1,6 @@
+<?php
+$this->pageTitle=Yii::app()->name.' - Восстановление пароля';
+?>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array( 
     'id'=>'accounts-form', 
     'enableAjaxValidation'=>false, 

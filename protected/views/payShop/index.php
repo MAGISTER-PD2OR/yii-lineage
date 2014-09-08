@@ -1,4 +1,5 @@
 <?php
+$this->pageTitle=Yii::app()->name.' - Купить';
 $this->breadcrumbs = array(
     $char_name,
 );

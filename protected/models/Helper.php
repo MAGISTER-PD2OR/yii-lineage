@@ -36,6 +36,8 @@ class Helper {
                 $online = file_get_contents($filename);
                 return $online;
             }
+        } else {
+           return self::get_count_online(); 
         }
     }
 

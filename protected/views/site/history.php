@@ -1,4 +1,5 @@
 <?php
+$this->pageTitle=Yii::app()->name.' - История';
 $this->breadcrumbs=array(
 	'История',
 );

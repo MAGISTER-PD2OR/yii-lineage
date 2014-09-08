@@ -1,3 +1,7 @@
+<?php
+$this->pageTitle=Yii::app()->name.' - Регистрация';
+?>
+
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array( 
     'id'=>'accounts-form', 
     'enableAjaxValidation'=>false, 

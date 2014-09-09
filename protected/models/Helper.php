@@ -27,27 +27,19 @@ class Helper {
         $online = intval($online1) + intval($online2);
         return $online; 
     }
-
-    public static function get_online() {
-        $filename = Yii::getPathOfAlias('webroot') . '/'.'online.txt';
-        if (file_exists($filename)) {
-            if (time() - 300 > filemtime($filename)) {
-                $online = self::get_count_online();
-                file_put_contents($filename, $online);
-            } else {
-                $online = file_get_contents($filename);
-                return $online;
-            }
-        } else {
-           return self::get_count_online(); 
-        }
-    }
     
     public static function renderJSON($data) {
         header('Content-type: application/json');
         echo CJSON::encode($data);
         Yii::app()->end();
     }
+    
+    public static function renderJSONP($data, $callback) {
+      header('Content-type: application/json');
+      $json = CJSON::encode($data);
+      echo $callback . ' (' . $json . ');';
+      Yii::app()->end();
+    }   
 
 
 }

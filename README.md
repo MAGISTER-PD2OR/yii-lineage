@@ -2,9 +2,7 @@ Yii_lineage
 ========
 Configuration
 ------------------------------
-Yii_lineage\protected\config\main.php
-
-Yii_lineage\protected\config\production.php
+Yii_lineage\protected\config\
 
 ```php
 
@@ -24,17 +22,18 @@ Yii_lineage\protected\config\production.php
 	      'Mailer'=>'smtp',
 	      'Port'=>25,
 	      'SMTPAuth'=>true, 
-    ),
+        ),
       
 	'params'=>array(
                 'rate'=>'100',
 		'change_account'=>'100',
-                'adminEmail'=>'mm555-99@mail.ru',
-                'adminName'=>'mazdik',
-                'adminDomen'=>'lineage7.ru',
+                'adminEmail'=>'admin@mail.ru',
+                'adminName'=>'player',
+                'adminDomen'=>'site.ru',
                 'waytopayLogin' =>'3236',
                 'waytopayPass' =>'3424e8-810cd2-ae915f-d1eefe-63c3',
                 'exchangeCredits' => '0.1',
+                'l2topID' =>'8967',
 	),
       
 ```

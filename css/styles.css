@@ -15,6 +15,11 @@
     float: right;
     margin: 20px 285px 0 0;
 }
+.search_title {
+    color: #cf0a09;
+    padding: 25px 0 0 60px;
+}
+
 @media (max-width: 1160px) {
 #main_bg {
     height: 598px;
@@ -38,8 +43,12 @@
     margin: -100px 35px 0 0;
     }
 }
+@media (max-width: 437px) {
+.search_tab  {
+    background:none;
+    float: none;
+    }
 .search_title {
-    color: #cf0a09;
-    font-size: 14px;
-    padding: 25px 0 0 60px;
+    padding:0;
+}
 }

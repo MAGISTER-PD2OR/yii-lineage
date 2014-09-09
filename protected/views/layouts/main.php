@@ -103,6 +103,8 @@ Yii::app()->clientScript->registerMetaTag($this->getMetaKeywords(), 'keywords');
         <p>
             <?php echo CHtml::link(CHtml::image(Yii::app()->baseUrl.'/images/vkontakte.png', "Мы в контакте", array('width'=>'120px')),
                 'http://vkontakte.ru/club22694761', array('rel'=>'nofollow', 'target'=>'_blank')); ?>
+            <?php echo CHtml::link(CHtml::image(Yii::app()->baseUrl.'/images/l2top.gif', "l2top", array()),
+                'http://l2top.ru/vote/'.Yii::app()->params['l2topID'].'/', array('rel'=>'nofollow', 'target'=>'_blank')); ?>
         </p>
         <div class="center">
         <?php $this->renderPartial('//layouts/_counters'); ?>

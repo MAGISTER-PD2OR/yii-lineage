@@ -46,8 +46,9 @@ return array(
                     'Username'=>'gqdev@yandex.ru',
                     'Password'=>'55599111',
                     'Mailer'=>'smtp',
-                    'Port'=>25,
+                    'Port'=>465,
                     'SMTPAuth'=>true, 
+                    'SMTPSecure' => 'ssl',
                 ),
 		
 		'errorHandler'=>array(

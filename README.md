@@ -15,13 +15,14 @@ Yii_lineage\protected\config\
 		),
     
 	'Smtpmail'=>array(
-	      'class'=>'application.extensions.smtpmail.PHPMailer',
-	      'Host'=>"smtp.mail.ru",
-	      'Username'=>'admin@mail',
-	      'Password'=>'password',
-	      'Mailer'=>'smtp',
-	      'Port'=>25,
-	      'SMTPAuth'=>true, 
+                'class'=>'application.extensions.smtpmail.PHPMailer',
+                'Host'=>"smtp.mail.ru",
+                'Username'=>'admin@mail',
+                'Password'=>'password',
+                'Mailer'=>'smtp',
+                'Port'=>465,
+                'SMTPAuth'=>true, 
+                'SMTPSecure' => 'ssl',
         ),
       
 	'params'=>array(

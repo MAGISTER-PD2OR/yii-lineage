@@ -3,7 +3,7 @@ $this->pageTitle=Yii::app()->name.' - Вход в личный кабинет';
 ?>
 
 <h3 class="text-center">Вход в личный кабинет</h3>
-<div class="row">
+
 <div class="span4 offset4 well">
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
@@ -36,5 +36,4 @@ $this->pageTitle=Yii::app()->name.' - Вход в личный кабинет';
 
 <?php $this->endWidget(); ?>
 
-    </div>
 </div>

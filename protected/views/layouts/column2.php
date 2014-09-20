@@ -32,6 +32,13 @@
             ));
             }
             ?>
+        <ul class="bs-docs-sidenav">
+            <li class="mynav-header">Сейчас у нас</li>
+            <li>Онлайн: <span class="text-success"><?php echo Helper::get_count_online(); ?></span></li>
+            <li>Login: <?php echo Helper::get_login_status(); ?></li>
+            <li>Game: <?php echo Helper::get_game_status(); ?></li>
+            <li>Рейты: x<?php echo Yii::app()->params['rate']; ?></li>
+        </ul>
         </div><!-- sidebar -->
     </div>
 </div>

@@ -65,7 +65,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-            $this->layout=null;
+            //$this->layout=null;
             $this->render('index');
 	}
         
@@ -138,7 +138,6 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
-                $this->layout='//layouts/column1';
 		$model = $this->captchaRequired()? new LoginForm('captchaRequired') : new LoginForm;
 
 		// if it is ajax validation request

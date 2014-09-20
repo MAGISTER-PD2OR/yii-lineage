@@ -63,17 +63,8 @@ Yii::app()->clientScript->registerMetaTag($this->getMetaKeywords(), 'keywords');
 <div class="margin_tab"></div>
 
 <?php if(Yii::app()->controller->getRoute()=='site/index') : ?>
-<div id="main_bg">
-    <div class="search_tab">
-        <div class="search_title">
-            Сейчас у нас<br>
-            Онлайн: <span class="text-success"><?php echo Helper::get_count_online(); ?></span><br>
-            Login: <?php echo Helper::get_login_status(); ?><br>
-            Game: <?php echo Helper::get_game_status(); ?><br>
-            Рейты: x<?php echo Yii::app()->params['rate']; ?>
-        </div>
-    </div>
-</div>
+<!--<div id="main_bg">
+</div>-->
 <?php endif; ?>
 
 <div class="container" id="page">

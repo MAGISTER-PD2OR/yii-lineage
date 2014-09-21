@@ -28,6 +28,16 @@ class Helper {
         return $online; 
     }
     
+    public static function get_count_characters() {
+        $result = Yii::app()->db->cache(1800)->createCommand("SELECT COUNT(1) FROM characters")->queryScalar();
+        return $result; 
+    }
+    
+    public static function get_count_accounts() {
+        $result = Yii::app()->db->cache(1800)->createCommand("SELECT COUNT(1) FROM accounts")->queryScalar();
+        return $result; 
+    }
+    
     public static function renderJSON($data) {
         header('Content-type: application/json');
         echo CJSON::encode($data);

@@ -38,6 +38,8 @@
             <li>Login: <?php echo Helper::get_login_status(); ?></li>
             <li>Game: <?php echo Helper::get_game_status(); ?></li>
             <li>Рейты: x<?php echo Yii::app()->params['rate']; ?></li>
+            <li>Аккаунтов: <?php echo Helper::get_count_accounts() ?></li>
+            <li>Персонажей: <?php echo Helper::get_count_characters() ?></li>
         </ul>
         </div><!-- sidebar -->
     </div>

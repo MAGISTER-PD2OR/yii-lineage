@@ -33,7 +33,7 @@
             }
             ?>
         <ul class="bs-docs-sidenav">
-            <li class="mynav-header">Сейчас у нас</li>
+            <li class="mynav-header">Статистика <?php echo Yii::app()->name; ?></li>
             <li>Онлайн: <span class="text-success"><?php echo Helper::get_count_online(); ?></span></li>
             <li>Login: <?php echo Helper::get_login_status(); ?></li>
             <li>Game: <?php echo Helper::get_game_status(); ?></li>

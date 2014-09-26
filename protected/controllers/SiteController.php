@@ -366,14 +366,17 @@ class SiteController extends Controller
         }
         
     public static function actionGetData() {
-        if(isset($_GET['callback'])) {
-        $callback = $_GET['callback'];
-        $login_status = Helper::get_status('localhost', '2106');
-        $game_status = Helper::get_status('localhost', '7777');
-        $online = Helper::get_count_online();
-        $data = array('login_status'=>$login_status, 'game_status'=>$game_status, 'online'=>$online, 'rate'=>Yii::app()->params['rate']);
-        Helper::renderJSONP($data, $callback);
+        if (isset($_GET['callback'])) {
+            $callback = $_GET['callback'];
+            $login_status = Helper::get_status('localhost', '2106');
+            $game_status = Helper::get_status('localhost', '7777');
+            $online = Helper::get_count_online();
+            $data = array('login_status' => $login_status, 'game_status' => $game_status,
+                'online' => $online, 'accounts' => Helper::get_count_accounts(), 'characters' => Helper::get_count_characters(),
+                'rate' => Yii::app()->params['rate'], 'name' => Yii::app()->name);
+            Helper::renderJSONP($data, $callback);
         }
     }
+
 
 }

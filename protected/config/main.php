@@ -78,5 +78,7 @@ return array(
                 'waytopayPass' =>'3424e8-810cd2-ae915f-d1eefe-63c3',
                 'exchangeCredits' => '0.1',
                 'l2topID' =>'8967',
+                'urlSrv' => 'http://one.lineage7.ru',
+                'urlSrvName' => 'Lindvior',
 	),
 );

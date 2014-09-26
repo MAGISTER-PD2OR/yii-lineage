@@ -11,7 +11,8 @@
 <?php if(Yii::app()->controller->getRoute()=='site/index' ||
         Yii::app()->controller->getRoute()=='site/contact' ||
         Yii::app()->controller->getRoute()=='site/recovery' ||
-        Yii::app()->controller->getRoute()=='site/login') { ?>
+        Yii::app()->controller->getRoute()=='site/login' ||
+        Yii::app()->controller->getRoute()=='site/signup') { ?>
         <ul class="bs-docs-sidenav">
             <li class="mynav-header">Статистика <?php echo Yii::app()->name; ?></li>
             <li>Онлайн: <span class="text-success"><?php echo Helper::get_count_online(); ?></span></li>

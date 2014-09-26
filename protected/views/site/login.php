@@ -4,7 +4,7 @@ $this->pageTitle=Yii::app()->name.' - Вход в личный кабинет';
 
 <h3 class="text-center">Вход в личный кабинет</h3>
 
-<div class="span4 offset4 well">
+<div class="span4 offset2 well">
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'login-form',

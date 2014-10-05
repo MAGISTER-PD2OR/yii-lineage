@@ -25,19 +25,24 @@
         <?php 
         if(!empty(Yii::app()->params['urlSrv'])) {
             $json_url = Yii::app()->params['urlSrv'].'/index.php/site/getdata?callback=df';
-            $json = file_get_contents($json_url);
+            $json = @file_get_contents($json_url);
+            if ($json === false) {
+                $data['login_status']='<span class="text-error">Off</span>';
+                $data['game_status']='<span class="text-error">Off</span>'; 
+            } else {
             $data = Helper::jsonp_decode($json, TRUE);
-        ?>    
+            }
+        ?>  
         <ul class="bs-docs-sidenav">
             <li class="mynav-header">Статистика <?php echo (!empty($data['name'])) ? $data['name'] : ''; ?></li>
             <li>Онлайн: <span class="text-success"><?php echo (!empty($data['online'])) ? $data['online'] : ''; ?></span></li>
             <li>Login: <?php echo (!empty($data['login_status'])) ? $data['login_status'] : ''; ?></li>
             <li>Game: <?php echo (!empty($data['game_status'])) ? $data['game_status'] : ''; ?></li>
-            <li>Рейты: x<?php echo (!empty($data['rate'])) ? $data['rate'] : ''; ?></li>
+            <li>Рейты: <?php echo (!empty($data['rate'])) ? 'x'.$data['rate'] : ''; ?></li>
             <li>Аккаунтов: <?php echo (!empty($data['accounts'])) ? $data['accounts'] : ''; ?></li>
             <li>Персонажей: <?php echo (!empty($data['characters'])) ? $data['characters'] : ''; ?></li>
         </ul>
-    <?php } ?>
+        <?php } ?>
     <?php } else {
         $this->widget('UserMenu');
     } ?> 

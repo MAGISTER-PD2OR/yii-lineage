@@ -80,5 +80,6 @@ return array(
                 'l2topID' =>'8967',
                 'urlSrv' => 'http://one.lineage7.ru',
                 'urlSrvName' => 'Lindvior',
+                'urlForum' => 'http://forum.lineage7.ru',
 	),
 );

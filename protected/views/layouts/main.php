@@ -27,7 +27,7 @@ Yii::app()->clientScript->registerMetaTag($this->getMetaKeywords(), 'keywords');
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
                 array('label'=>Yii::app()->params['urlSrvName'], 'url'=>Yii::app()->params['urlSrv'], 'linkOptions'=>array('rel'=>'nofollow')),
-                array('label'=>'Форум', 'url'=>'http://forum.'.Yii::app()->params['adminDomen'], 'linkOptions'=>array('rel'=>'nofollow', 'target'=>'_blank')),
+                array('label'=>'Форум', 'url'=>Yii::app()->params['urlForum'], 'linkOptions'=>array('rel'=>'nofollow', 'target'=>'_blank')),
                 array('label'=>'ЛК', 'url'=>array('/site/lk'), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Напомнить пароль', 'url'=>array('/site/recovery'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Сервисы', 'url'=>'#', 'items'=>array(

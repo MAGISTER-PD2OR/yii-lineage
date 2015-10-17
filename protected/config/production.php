@@ -15,9 +15,6 @@ return CMap::mergeArray(
 			'charset' => 'utf8',
 			'schemaCachingDuration'=>180,
 		),
-		'cache' => array(
-			'class' => 'CDbCache',
-		),
-        ),
+            ),
         )
         );

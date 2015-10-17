@@ -45,7 +45,9 @@ return array(
                             '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-       
+		'cache' => array(
+			'class' => 'CFileCache',
+		),
                 'Smtpmail'=>array(
                     'class'=>'application.extensions.smtpmail.PHPMailer',
                     'Host'=>"smtp.yandex.ru",

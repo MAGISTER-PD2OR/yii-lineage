@@ -12,8 +12,8 @@ class UserMenu extends CPortlet {
         $menu = array(
             array('label' => Yii::app()->user->name),
             array('label' => 'Баланс: ' . Transactions::model()->getBalanse(Yii::app()->user->name), 'url' => ''),
-            array('label' => 'Пополнить баланс ', 'icon' => 'icon-plus-sign', 'url' => array('/pay')),
-            array('label' => 'История', 'icon' => 'icon-list', 'url' => array('site/history')),
+            array('label' => 'Пополнить баланс ', 'icon' => 'icon-plus-sign', 'url' => array('/pay/index')),
+            array('label' => 'История', 'icon' => 'icon-list', 'url' => array('/site/history')),
             array('label' => 'Персонажи'),
         );
         $players= Characters::model()->findAll('account_name=:account_name', array(':account_name'=>Yii::app()->user->name));

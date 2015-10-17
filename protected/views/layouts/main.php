@@ -36,12 +36,9 @@ Yii::app()->clientScript->registerMetaTag($this->getMetaKeywords(), 'keywords');
                     array('label' => 'Обменник', 'icon' => 'icon-repeat', 'url' => array('/payShop/exchange')),
                     ), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Админка', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Баланс', 'url'=>array('/payBalance')),
-                    array('label'=>'История', 'url'=>array('/transactions')),
-                    array('label'=>'Магазин', 'url'=>'#', 'items'=>array(
-                        array('label'=>'Добавить', 'url'=>array('/payShop/create')),
-                        array('label'=>'Управление', 'url'=>array('/payShop/list')),
-                    )),
+                    array('label'=>'Баланс', 'url'=>array('/payBalance/index')),
+                    array('label'=>'История', 'url'=>array('/transactions/index')),
+                    array('label'=>'Магазин', 'url'=>array('/payShop/list')),
                 ), 'visible'=>Yii::app()->user->checkAccess('moderator'))
             ),
         ),

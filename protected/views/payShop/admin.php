@@ -19,6 +19,8 @@ $('.search-form form').submit(function(){
 
 <h3>Управление магазином</h3>
 
+<?php echo CHtml::link(Yii::t('default', 'Добавить'),array('create'),array('class'=>'btn pull-right')); ?>
+
 <p>
 Можно ввести оператор сравнения (<, <=,>,> =, <> или =) в начале каждого из ваших значений поиска.
 </p>

@@ -78,7 +78,7 @@ return array(
                 'rate'=>'100',
 		'change_account'=>'100',
                 'adminEmail'=>'gqdev@yandex.ru',
-                'administrator'=>'',
+                'administrator'=>'mazdik',
                 'moderator'=>'',
                 'adminDomen'=>'lineage7.ru',
                 'exchangeCredits' => '0.1',

@@ -40,7 +40,7 @@ class PayController extends Controller {
     public function send($summ, $invId, $invDesc, $email) {
         $outSum = intval($summ) > 1 ? intval($summ) : 1;
         $crc = md5("$this->mrhLogin:$outSum:$invId:$this->mrhPass1");
-        if(Yii::app()->params['testRobokassa']) {
+        if(Yii::app()->params['testRobokassa']=='true') {
             $roboUrl = "http://test.robokassa.ru/Index.aspx?MrchLogin=";
         } else {
             $roboUrl = "https://merchant.roboxchange.com/Index.aspx?MrchLogin=";

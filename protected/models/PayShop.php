@@ -142,6 +142,9 @@ class PayShop extends CActiveRecord
 
             $player = Characters::model()->find('obj_Id=:obj_Id', array(':obj_Id'=>$char_id));
             $balance = PayBalance::model()->find('login=:login', array(':login'=>$player->account_name));
+            if(empty($balance)) {
+                return false;
+            }
             $price=$shop->price*$count;
             if($balance->balance<$price){
                 return false;

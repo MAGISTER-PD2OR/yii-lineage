@@ -17,10 +17,6 @@
  * @property string $allow_hwid
  * @property integer $points
  * @property string $email
- * @property string $email_activ_code
- * @property string $email_activated
- * @property string $ident_code
- * @property string $ban_time_ipsys
  */
 class Accounts extends CActiveRecord
 {
@@ -66,7 +62,6 @@ class Accounts extends CActiveRecord
 			array('last_access, access_level, last_server, bonus, bonus_expire, ban_expire, points', 'numerical', 'integerOnly'=>true),
 			array('allow_ip, allow_hwid', 'length', 'max'=>255),
 			array('last_ip', 'length', 'max'=>15),
-			array('email_activ_code, email_activated, ident_code, ban_time_ipsys', 'length', 'max'=>45),
                         // Почта проверяется на соответствие типу
                         array('email', 'email', 'on'=>self::SCENARIO_SIGNUP),
                         // Почта должна быть в пределах от 6 до 50 символов
@@ -82,7 +77,7 @@ class Accounts extends CActiveRecord
                         // Пароль должен совпадать с повторным паролем для сценария регистрации
                         array('password', 'compare', 'compareAttribute'=>'password_repeat', 'on'=>self::SCENARIO_UPDATE.', '.self::SCENARIO_SIGNUP),
                         array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on'=>self::SCENARIO_SIGNUP),
-			array('login, password, last_access, access_level, last_ip, last_server, bonus, bonus_expire, ban_expire, allow_ip, allow_hwid, points, email, email_activ_code, email_activated, ident_code, ban_time_ipsys', 'safe', 'on'=>'search'),
+			array('login, password, last_access, access_level, last_ip, last_server, bonus, bonus_expire, ban_expire, allow_ip, allow_hwid, points, email', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -116,10 +111,6 @@ class Accounts extends CActiveRecord
 			'allow_hwid' => 'Allow Hwid',
 			'points' => 'Points',
 			'email' => 'Email',
-			'email_activ_code' => 'Email Activ Code',
-			'email_activated' => 'Email Activated',
-			'ident_code' => 'Ident Code',
-			'ban_time_ipsys' => 'Ban Time Ipsys',
                         'password_repeat' => 'Ещё раз пароль',
                         'verifyCode' => 'Код проверки',
 		);
@@ -149,10 +140,6 @@ class Accounts extends CActiveRecord
 		$criteria->compare('allow_hwid',$this->allow_hwid,true);
 		$criteria->compare('points',$this->points);
 		$criteria->compare('email',$this->email,true);
-		$criteria->compare('email_activ_code',$this->email_activ_code,true);
-		$criteria->compare('email_activated',$this->email_activated,true);
-		$criteria->compare('ident_code',$this->ident_code,true);
-		$criteria->compare('ban_time_ipsys',$this->ban_time_ipsys,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

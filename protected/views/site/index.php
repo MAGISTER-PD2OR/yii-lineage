@@ -6,7 +6,7 @@ $this->pageTitle=Yii::app()->name;
     'heading'=>'Lineage Kristall',
 )); ?>
  
-    <p>Добро пожаловать на бесплатный сервер Lineage II.</p>
+    <p>Добро пожаловать на бесплатный сервер <?php echo Yii::app()->name; ?></p>
     <p>
     <?php $this->widget('bootstrap.widgets.TbButton', array(
         'type'=>'success',
@@ -24,13 +24,8 @@ $this->pageTitle=Yii::app()->name;
             'type'=>'success',
             'size'=>'large',
             'label'=>'Патч HF',
-            'url'=>'https://dl.dropbox.com/u/31827471/lineage7.zip'
-    )); ?>
-    <?php $this->widget('bootstrap.widgets.TbButton', array(
-            'type'=>'success',
-            'size'=>'large',
-            'label'=>'Патч Lindvior',
-            'url'=>'https://dl.dropboxusercontent.com/u/31827471/system_lindvior.rar'
+            'url'=>'https://yadi.sk/d/3kjHX053gHFzz',
+            'htmlOptions'=>array('rel'=>'nofollow', 'target'=>'_blank'),
     )); ?>
     </p>
  

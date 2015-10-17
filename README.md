@@ -31,10 +31,12 @@ Yii_lineage\protected\config\
                 'adminEmail'=>'admin@mail.ru',
                 'adminName'=>'player',
                 'adminDomen'=>'site.ru',
-                'waytopayLogin' =>'3236',
-                'waytopayPass' =>'3424e8-810cd2-ae915f-d1eefe-63c3',
                 'exchangeCredits' => '0.1',
                 'l2topID' =>'8967',
+                'robokassaLogin' => '',
+                'robokassaPass' => '',
+                'robokassaPass2' => '',
+                'testRobokassa' => 'true',
 	),
       
 ```
@@ -43,24 +45,19 @@ SQL script
 Execute SQL script files in Yii_lineage\protected\data
 
 
-waytopay
+robokassa
 ------------------------------
 Result URL
-
-http://domen.ru/index.php/pay/process
+http://domen.ru/index.php/pay/result
 
 Success URL
-
-http://domen.ru/
+http://domen.ru/index.php/pay/success
 
 Fail URL
-
-http://domen.ru/
+http://domen.ru/index.php/pay/fail
 
 Метод отсылки данных по Result URL
-
 POST
-
 
 
 Links

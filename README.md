@@ -29,7 +29,8 @@ Yii_lineage\protected\config\
                 'rate'=>'100',
 		'change_account'=>'100',
                 'adminEmail'=>'admin@mail.ru',
-                'adminName'=>'player',
+                'administrator'=>'login1',
+                'moderator'=>'login2',
                 'adminDomen'=>'site.ru',
                 'exchangeCredits' => '0.1',
                 'l2topID' =>'8967',
@@ -37,6 +38,7 @@ Yii_lineage\protected\config\
                 'robokassaPass' => '',
                 'robokassaPass2' => '',
                 'testRobokassa' => 'true',
+                'PasswordHash' => '', // whirlpool или sha1
 	),
       
 ```

@@ -28,7 +28,7 @@ class PayBalanceController extends Controller
 		return array(
 			array('allow',
 				'actions'=>array('index','view','create','update','admin','delete','add'),
-				'users'=>array(Yii::app()->params['adminName']),
+				'roles'=>array('moderator'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),

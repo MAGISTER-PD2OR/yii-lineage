@@ -22,13 +22,19 @@ return array(
 
 	'components'=>array(
 		'user'=>array(
+                        'class' => 'WebUser',
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+                'authManager' => array(
+                    // Будем использовать свой менеджер авторизации
+                    'class' => 'PhpAuthManager',
+                    // Роль по умолчанию. Все, кто не админы, модераторы и юзеры — гости.
+                    'defaultRoles' => array('guest'),
+                ),
                 'bootstrap'=>array(
                     'class'=>'bootstrap.components.Bootstrap',
                 ),
-		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
                         'showScriptName'=>false,
@@ -72,7 +78,8 @@ return array(
                 'rate'=>'100',
 		'change_account'=>'100',
                 'adminEmail'=>'gqdev@yandex.ru',
-                'adminName'=>'mazdik',
+                'administrator'=>'',
+                'moderator'=>'',
                 'adminDomen'=>'lineage7.ru',
                 'exchangeCredits' => '0.1',
                 'l2topID' =>'8967',
@@ -83,6 +90,6 @@ return array(
                 'robokassaPass' => 'Qwerty111',
                 'robokassaPass2' => 'Qwerty222',
                 'testRobokassa' => 'true',
-                'PasswordHash' => 'whirlpool', // whirlpool или sha1
+                'PasswordHash' => '', // whirlpool или sha1
 	),
 );

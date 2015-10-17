@@ -28,7 +28,7 @@ class TransactionsController extends Controller
 		return array(
 			array('allow',
 				'actions'=>array('index','view','admin','delete','create','update'),
-				'users'=>array(Yii::app()->params['adminName']),
+				'roles'=>array('moderator'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),

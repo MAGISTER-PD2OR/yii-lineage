@@ -42,7 +42,7 @@ Yii::app()->clientScript->registerMetaTag($this->getMetaKeywords(), 'keywords');
                         array('label'=>'Добавить', 'url'=>array('/payShop/create')),
                         array('label'=>'Управление', 'url'=>array('/payShop/list')),
                     )),
-                ), 'visible'=>Yii::app()->user->name==Yii::app()->params['adminName'])
+                ), 'visible'=>Yii::app()->user->checkAccess('moderator'))
             ),
         ),
         array(

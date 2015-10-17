@@ -32,7 +32,7 @@ class PayShopController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete','create','update','list'),
-				'users'=>array(Yii::app()->params['adminName']),
+				'roles'=>array('moderator'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),

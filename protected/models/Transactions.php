@@ -95,7 +95,7 @@ class Transactions extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('ip',$this->ip,true);
-                if (Yii::app()->user->name==Yii::app()->params['adminName']){
+                if (Yii::app()->user->checkAccess('moderator')){
 		$criteria->compare('login',$this->login,true);  
                 } else {
                 $criteria->compare('login',  Yii::app()->user->name);

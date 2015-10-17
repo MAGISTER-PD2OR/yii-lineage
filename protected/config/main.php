@@ -76,12 +76,13 @@ return array(
                 'adminDomen'=>'lineage7.ru',
                 'exchangeCredits' => '0.1',
                 'l2topID' =>'8967',
-                'urlSrv' => 'http://one.lineage7.ru',
+                'urlSrv' => 'http://one.lineage7.ru', // без слеша в конце
                 'urlSrvName' => 'Lindvior',
                 'urlForum' => 'http://forum.lineage7.ru',
                 'robokassaLogin' => 'lineage.kristal-lab.ru',
                 'robokassaPass' => 'Qwerty111',
                 'robokassaPass2' => 'Qwerty222',
                 'testRobokassa' => 'true',
+                'PasswordHash' => 'whirlpool', // whirlpool или sha1
 	),
 );

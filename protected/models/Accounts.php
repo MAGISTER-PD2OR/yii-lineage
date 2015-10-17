@@ -148,7 +148,7 @@ class Accounts extends CActiveRecord
         
 	public function validatePassword($password)
 	{
-		return base64_encode(pack('H*', sha1(utf8_encode($password))))===$this->password;
+		return $this->hashPassword($password)===$this->password;
 	}
 
 	/**
@@ -158,7 +158,11 @@ class Accounts extends CActiveRecord
 	 */
 	public function hashPassword($password)
 	{
-            return base64_encode(pack('H*', sha1(utf8_encode($password))));
+            if(Yii::app()->params['PasswordHash'] == 'whirlpool') {
+                return base64_encode(hash('whirlpool', $password, true));
+            } else {
+                return base64_encode(pack('H*', sha1(utf8_encode($password))));
+            }
 	}
         
         protected function beforeSave()

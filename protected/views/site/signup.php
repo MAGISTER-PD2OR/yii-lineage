@@ -8,6 +8,8 @@ $this->pageTitle=Yii::app()->name.' - Регистрация';
 )); ?>
 
     <h3>Регистрация</h3>
+    
+    <p class="text-error">Пожалуйста, введите правильный Email адрес. Ваш Email может понадобиться для восстановления пароля.</p>
 
     <?php if(Yii::app()->user->hasFlash('success')||Yii::app()->user->hasFlash('pass_error'))
     {

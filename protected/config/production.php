@@ -13,7 +13,7 @@ return CMap::mergeArray(
 			'username' => 'root',
 			'password' => 'vertrigo',
 			'charset' => 'utf8',
-			'schemaCachingDuration'=>180,
+			'schemaCachingDuration'=>3600,
 		),
             ),
         )

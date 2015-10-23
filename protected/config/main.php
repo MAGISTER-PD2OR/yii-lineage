@@ -26,6 +26,10 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+                'clientScript'=>array(
+                    'coreScriptPosition' => CClientScript::POS_END,
+                    'defaultScriptFilePosition' => CClientScript::POS_END,
+                ),
                 'authManager' => array(
                     // Будем использовать свой менеджер авторизации
                     'class' => 'PhpAuthManager',

@@ -8,11 +8,15 @@
     </div>
     <div class="span3">
         <div id="sidebar">
-<?php if(Yii::app()->controller->getRoute()=='site/index' ||
-        Yii::app()->controller->getRoute()=='site/contact' ||
-        Yii::app()->controller->getRoute()=='site/recovery' ||
-        Yii::app()->controller->getRoute()=='site/login' ||
-        Yii::app()->controller->getRoute()=='site/signup') { ?>
+<?php 
+if ($this->route == 'site/index' ||
+        $this->route == 'site/contact' ||
+        $this->route == 'site/recovery' ||
+        $this->route == 'site/login' ||
+        $this->route == 'site/signup') {
+
+    if ($this->beginCache('sidebar', array('duration' => 120))) {
+?>
         <ul class="bs-docs-sidenav">
             <li class="mynav-header">Статистика <?php echo Yii::app()->name; ?></li>
             <li>Онлайн: <span class="text-success"><?php echo Helper::get_count_online(); ?></span></li>
@@ -42,10 +46,14 @@
             <li>Аккаунтов: <?php echo (!empty($data['accounts'])) ? $data['accounts'] : ''; ?></li>
             <li>Персонажей: <?php echo (!empty($data['characters'])) ? $data['characters'] : ''; ?></li>
         </ul>
-        <?php } ?>
-    <?php } else {
-        $this->widget('UserMenu');
-    } ?> 
+ <?php 
+        }
+        $this->endCache();
+    }
+} else {
+    $this->widget('UserMenu');
+}
+?> 
 
         </div><!-- sidebar -->
     </div>

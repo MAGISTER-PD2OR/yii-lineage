@@ -27,8 +27,12 @@ class TransactionsController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','view','admin','delete','create','update'),
+				'actions'=>array('index','view','admin'),
 				'roles'=>array('moderator'),
+			),
+			array('allow',
+				'actions'=>array('delete','create','update'),
+				'roles'=>array('administrator'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),

@@ -50,9 +50,19 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
                 'type'=>'date',
                 'value'=>'$data->trans_date',
                 ),
-		/**/
 		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
+                    'class'=>'bootstrap.widgets.TbButtonColumn',
+                    'template'=>'{view} {update} {delete}',
+                    'buttons'=>array(
+                        'update' => array
+                        (
+                            'visible'=>'Yii::app()->user->checkAccess("administrator")',
+                        ),
+                        'delete' => array
+                        (
+                            'visible'=>'Yii::app()->user->checkAccess("administrator")',
+                        ),
+                    ),
 		),
 	),
 )); ?>

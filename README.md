@@ -61,6 +61,9 @@ http://domen.ru/index.php/pay/fail
 Метод отсылки данных по Result URL
 POST
 
+Yii 1.1.16 
+------------------------------
+You can download it at http://www.yiiframework.com/download/
 
 Links
 ------------------------------
